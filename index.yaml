@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  prometheus-aws-discovery:
+  - apiVersion: v2
+    appVersion: "0.7"
+    created: "2021-07-30T14:52:59.886528742Z"
+    description: Helm chart for prometheus-aws-discovery https://github.com/DaspawnW/prometheus-aws-discovery
+    digest: 65bbc770dc62a33ce2f9e3659cba7343dc845648dd2d02b2ebede7a9707c8a3a
+    name: prometheus-aws-discovery
+    type: application
+    urls:
+    - https://github.com/DaspawnW/helm-charts/releases/download/prometheus-aws-discovery-0.1.0/prometheus-aws-discovery-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-07-30T14:52:59.886533642Z"
