@@ -1,6 +1,6 @@
 apiVersion: v2
 name: prometheus-aws-discovery
-description: A Helm chart for Kubernetes
+description: Helm chart for prometheus-aws-discovery https://github.com/DaspawnW/prometheus-aws-discovery
 
 # A chart can be either an 'application' or a 'library' chart.
 #
