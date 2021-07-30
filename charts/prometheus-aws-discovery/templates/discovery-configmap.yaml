@@ -1,0 +1,14 @@
+{{- if .Values.configmapCreate }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  {{- if .Values.configmapName }}
+  name: {{ .Values.configmapName }}
+  {{- else }}
+  name: {{ include "prometheus-aws-discovery.fullname" . }}
+  {{- end }}
+  labels:
+    {{- include "prometheus-aws-discovery.labels" . | nindent 6 }}
+data:
+  file-sd-config.json: ""
+{{ end }}

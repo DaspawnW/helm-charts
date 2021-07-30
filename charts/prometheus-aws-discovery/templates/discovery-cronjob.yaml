@@ -1,0 +1,52 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "prometheus-aws-discovery.fullname" . }}
+  labels:
+    {{- include "prometheus-aws-discovery.labels" . | nindent 6 }}
+spec:
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 0
+  schedule: "{{ .Values.schedule }}"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            {{- include "prometheus-aws-discovery.labels" . | nindent 12}}
+          {{- if .Values.podAnnotations }}
+          annotations:
+            {{- toYaml .Values.podAnnotations | nindent 12 }}
+          {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: {{ include "prometheus-aws-discovery.fullname" . }}
+          containers:
+            - name: aws-discovery
+              image: "{{ .Values.image }}:{{ .Values.tag }}"
+              args:
+                - -output=kubernetes
+                {{- if .Values.configmapName }}
+                - -kube-configmap-name={{ .Values.configmapName }}
+                {{- else }}
+                - -kube-configmap-name={{ include "prometheus-aws-discovery.fullname" . }}
+                {{- end }}
+                - -kube-configmap-key={{ .Values.configmapKey }}
+                - -tagprefix={{ .Values.tagprefix }}
+              env:
+                - name: "AWS_REGION"
+                  value: "eu-central-1"
+                {{- if .Values.assumeRole }}
+                - name: AWS_SDK_LOAD_CONFIG
+                  value: "{{ .Values.assumeRole }}"
+                {{ end }}
+              volumeMounts:
+                - mountPath: /root/.aws/config
+                  name: aws-config
+                  subPath: config
+          volumes:
+            - name: aws-config
+              configMap:
+                name: {{ include "prometheus-aws-discovery.fullname" . }}-configuration

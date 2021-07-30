@@ -1,0 +1,36 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "prometheus-aws-discovery.fullname" . }}
+  labels:
+    {{- include "prometheus-aws-discovery.labels" . | nindent 6 }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    resourceNames:
+      {{- if .Values.configmapName }}
+      - {{ .Values.configmapName }}
+      {{- else }}
+      - {{ include "prometheus-aws-discovery.fullname" . }}
+      {{- end }}
+    verbs:
+      - get
+      - update
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "prometheus-aws-discovery.fullname" . }}
+  labels:
+    {{- include "prometheus-aws-discovery.labels" . | nindent 6 }}
+subjects:
+  - kind: ServiceAccount
+    namespace: {{ .Release.Namespace }}
+    name: {{ include "prometheus-aws-discovery.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ include "prometheus-aws-discovery.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
