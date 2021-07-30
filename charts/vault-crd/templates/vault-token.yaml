@@ -1,0 +1,8 @@
+{{- if eq .Values.vaultCRD.vaultAuth "token" }}
+apiVersion: v1
+kind: Secret
+metadata:
+    name: {{ printf "%s-%s" (include "vault-crd.fullname" .) "vault-token" }}
+data:
+    token: {{ required "vaultCRD.vaultToken token must be specified" .Values.vaultCRD.vaultToken | b64enc | quote }}
+{{ end }}
