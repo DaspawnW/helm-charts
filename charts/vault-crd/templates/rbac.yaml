@@ -82,6 +82,7 @@ rules:
       - update
       - delete
       - watch
+      - list
   - apiGroups:
       - extensions
       - apps
