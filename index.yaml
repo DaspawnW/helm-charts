@@ -13,6 +13,15 @@ entries:
     version: 0.1.0
   vault-crd:
   - apiVersion: v2
+    appVersion: 1.10.2
+    created: "2022-05-20T14:35:44.015288326Z"
+    description: Helm chart for vault-crd https://github.com/DaspawnW/vault-crd
+    digest: 9f53ae0dd6b1ad062edb0c29f2c6a56638f78c5b1ddbe651855e9d0ad1475576
+    name: vault-crd
+    urls:
+    - https://github.com/DaspawnW/helm-charts/releases/download/vault-crd-1.10.2/vault-crd-1.10.2.tgz
+    version: 1.10.2
+  - apiVersion: v2
     appVersion: 1.10.1
     created: "2022-05-19T16:44:03.866863189Z"
     description: Helm chart for vault-crd https://github.com/DaspawnW/vault-crd
@@ -66,4 +75,4 @@ entries:
     urls:
     - https://github.com/DaspawnW/helm-charts/releases/download/vault-crd-1.6.3/vault-crd-1.6.3.tgz
     version: 1.6.3
-generated: "2022-05-19T16:44:03.866999991Z"
+generated: "2022-05-20T14:35:44.015479226Z"
