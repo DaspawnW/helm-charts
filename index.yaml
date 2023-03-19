@@ -3,6 +3,16 @@ entries:
   prometheus-aws-discovery:
   - apiVersion: v2
     appVersion: "0.7"
+    created: "2023-03-19T17:10:22.923453761Z"
+    description: Helm chart for prometheus-aws-discovery https://github.com/DaspawnW/prometheus-aws-discovery
+    digest: 511c88084e1a4e9160abecf4914c0115350c74a40ed6d42854e2a66b3b94c683
+    name: prometheus-aws-discovery
+    type: application
+    urls:
+    - https://github.com/DaspawnW/helm-charts/releases/download/prometheus-aws-discovery-0.1.1/prometheus-aws-discovery-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: "0.7"
     created: "2021-07-30T14:52:59.886528742Z"
     description: Helm chart for prometheus-aws-discovery https://github.com/DaspawnW/prometheus-aws-discovery
     digest: 65bbc770dc62a33ce2f9e3659cba7343dc845648dd2d02b2ebede7a9707c8a3a
@@ -12,6 +22,15 @@ entries:
     - https://github.com/DaspawnW/helm-charts/releases/download/prometheus-aws-discovery-0.1.0/prometheus-aws-discovery-0.1.0.tgz
     version: 0.1.0
   vault-crd:
+  - apiVersion: v2
+    appVersion: 1.12.0
+    created: "2023-03-19T17:10:23.136447688Z"
+    description: Helm chart for vault-crd https://github.com/DaspawnW/vault-crd
+    digest: d7b2ea5519242ef65221c7e8105692a50bce16ed4ada5c565d30525479b09338
+    name: vault-crd
+    urls:
+    - https://github.com/DaspawnW/helm-charts/releases/download/vault-crd-1.12.1/vault-crd-1.12.1.tgz
+    version: 1.12.1
   - apiVersion: v2
     appVersion: 1.11.0
     created: "2022-10-19T09:32:43.340525268Z"
@@ -84,4 +103,4 @@ entries:
     urls:
     - https://github.com/DaspawnW/helm-charts/releases/download/vault-crd-1.6.3/vault-crd-1.6.3.tgz
     version: 1.6.3
-generated: "2022-10-19T09:32:43.341111891Z"
+generated: "2023-03-19T17:10:23.136765402Z"
