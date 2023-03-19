@@ -3,8 +3,9 @@
 # Declare variables to be passed into your templates.
 
 vaultCRD:
-  repository: daspawnw/vault-crd
-  tag: 1.11.0
+  repository: ghcr.io/daspawnw/vault-crd
+  #repository: public.ecr.aws/daspawnw/vault-crd
+  tag: 1.12.0
   pullPolicy: IfNotPresent
 
   # -- Please specify here the URL to your Vault installation. Don't forget to set the /v1/ path e.g. http://localhost:8080/v1/

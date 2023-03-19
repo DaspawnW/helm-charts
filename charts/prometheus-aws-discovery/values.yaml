@@ -17,7 +17,7 @@ schedule: "*/5 * * * *"
 #  iam.amazonaws.com/role: "prometheus-aws-discovery"
 
 # -- docker image of prometheus aws discovery
-image: daspawnw/prometheus-aws-discovery
+image: ghcr.io/daspawnw/prometheus-aws-discovery
 
 # -- docker tag of prometheus aws discovery
 tag: 0.7
