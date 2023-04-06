@@ -44,3 +44,8 @@ vaultCRD:
     certBase64: ""
     keyBase64: ""
     caBase64: ""
+
+  # -- Affinities to use for the deployment. Optional.
+  affinities: {}
+  # -- Tolerations to use for the deployment. Optional.
+  tolerations: []
