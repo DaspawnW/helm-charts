@@ -46,6 +46,6 @@ vaultCRD:
     caBase64: ""
 
   # -- Affinities to use for the deployment. Optional.
-  affinities: {}
+  affinity: {}
   # -- Tolerations to use for the deployment. Optional.
   tolerations: []
