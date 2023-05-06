@@ -98,3 +98,11 @@ spec:
         - name: pkcs12-cert
           emptyDir: {}
       {{ end }}
+      {{- with .Values.vaultCRD.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.vaultCRD.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
