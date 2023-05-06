@@ -1,0 +1,64 @@
+deployment:
+  replicas: 1
+
+  annotations: {}
+  labels: {}
+
+  imagePullPolicy: IfNotPresent
+
+  imagePullSecretVaultPath: "kv-doaase/docker-registry"
+
+  port: 8080
+
+  env: []
+
+  livenessProbe:
+    enabled: true
+    path: "/actuator/health"
+    port: 8081
+
+  readinessProbe:
+    enabled: true
+    path: "/actuator/health"
+    port: 8081
+
+  resources:
+    limits:
+      memory: 256Mi
+
+  volumes: []
+#    - name: qwe
+#      mountPath: "/opt/asd"
+#      subPath: ""
+#      volumeConfig:
+#        secret:
+#          secretName: qwe
+
+
+serviceAccount:
+  enabled: false
+
+service:
+  enabled: true
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - /
+  tls:
+    enabled: false
+    vaultPath: ""
+
+global:
+  image: "qwe"
+  tag: "asd"
+  backstage:
+    component: ""
+    system: ""
+    namespace: "default"

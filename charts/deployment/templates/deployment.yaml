@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "deployment.fullname" . }}
+  labels:
+    {{- include "deployment.labels" . | nindent 4 }}
+    {{- include "deployment.backstageLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- include "deployment.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.deployment.annotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "deployment.selectorLabels" . | nindent 8 }}
+        {{- include "deployment.backstageLabels" . | nindent 8 }}
+    spec:
+      {{- if .Values.deployment.imagePullSecretVaultPath }}
+      imagePullSecrets:
+        - name: {{ include "deployment.fullname" . }}-dockercfg
+      {{- end }}
+      {{- if .Values.serviceAccount.enabled }}
+      serviceAccountName: {{ include "deployment.serviceAccountName" . }}
+      {{- end }}
+      containers:
+        - name: deployment
+          image: "{{ .Values.global.image }}:{{ .Values.global.tag }}"
+          imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+          {{- if .Values.deployment.env }}
+          env:
+            {{- with .Values.deployment.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.deployment.port }}
+              protocol: TCP
+          {{- if .Values.deployment.livenessProbe.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.deployment.livenessProbe.path }}
+              port: {{ .Values.deployment.livenessProbe.port }}
+          {{- end }}
+
+          {{- if .Values.deployment.readinessProbe.enabled }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.deployment.readinessProbe.path }}
+              port: {{ .Values.deployment.readinessProbe.port }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.deployment.resources | nindent 12 }}
+
+          {{- if .Values.deployment.volumes }}
+          volumeMounts:
+            {{- range .Values.deployment.volumes }}
+            - mountPath: {{ .mountPath }}
+              name: {{ .name }}
+              {{- if .subPath }}
+              subPath: {{ .subPath }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+
+      {{- if .Values.deployment.volumes }}
+      volumes:
+        {{- range .Values.deployment.volumes }}
+        - name: {{ .name }}
+          {{- toYaml .volumeConfig | nindent 10  }}
+        {{- end }}
+      {{- end }}

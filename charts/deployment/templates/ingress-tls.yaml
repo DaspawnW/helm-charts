@@ -1,0 +1,17 @@
+{{- if and .Values.ingress.enabled .Values.ingress.tls.enabled }}
+{{- range .Values.ingress.hosts }}
+apiVersion: "koudingspawn.de/v1"
+kind: Vault
+metadata:
+  name: {{ .host }}
+  labels:
+    {{- include "deployment.labels" . | nindent 4 }}
+    {{- include "deployment.backstageLabels" . | nindent 4 }}
+spec:
+  path: "{{ $.Values.ingress.tls.vaultPath }}"
+  type: "PKI"
+  pkiConfiguration:
+    commonName: "{{ .host }}"
+---
+{{- end }}
+{{- end }}
