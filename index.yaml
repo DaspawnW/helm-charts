@@ -3,6 +3,16 @@ entries:
   deployment:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-11T17:48:49.841619219Z"
+    description: A Helm chart for Kubernetes
+    digest: a92659a4e620b9469339faa6249d70edcf767edd22d81d7b7d9d25f5fafaedd5
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/DaspawnW/helm-charts/releases/download/deployment-1.0.1/deployment-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-05-06T19:28:46.199828553Z"
     description: A Helm chart for Kubernetes
     digest: 6f0b4e2b1c1bf0b38805f6a963e79ec7e44047d659dd24f0479ffe179c75b3e2
@@ -123,4 +133,4 @@ entries:
     urls:
     - https://github.com/DaspawnW/helm-charts/releases/download/vault-crd-1.6.3/vault-crd-1.6.3.tgz
     version: 1.6.3
-generated: "2023-05-06T19:28:46.199933755Z"
+generated: "2023-06-11T17:48:49.841652018Z"
