@@ -34,6 +34,8 @@ deployment:
 #        secret:
 #          secretName: qwe
 
+  command: []
+  args: []
 
 serviceAccount:
   enabled: false

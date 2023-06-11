@@ -37,6 +37,18 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- end }}
+          {{- if .Values.deployment.command }}
+          command:
+            {{- with .Values.deployment.command }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.deployment.args }}
+          args:
+            {{- with .Values.deployment.args }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.deployment.port }}
