@@ -56,4 +56,5 @@ Create the name of the service account to use
 backstage.io/namespace: {{ .Values.global.backstage.namespace | default "default" }}
 backstage.io/system: {{ .Values.global.backstage.system }}
 backstage.io/component: {{ .Values.global.backstage.component }}
+backstage.io/stage: {{ .Values.global.stage }}
 {{- end }}

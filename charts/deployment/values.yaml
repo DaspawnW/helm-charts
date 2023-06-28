@@ -14,11 +14,13 @@ deployment:
 
   livenessProbe:
     enabled: true
+    type: http # supported: http, grpc
     path: "/actuator/health"
     port: 8081
 
   readinessProbe:
     enabled: true
+    type: http # supported: http, grpc
     path: "/actuator/health"
     port: 8081
 
@@ -60,6 +62,7 @@ ingress:
 global:
   image: "qwe"
   tag: "asd"
+  stage: ""
   backstage:
     component: ""
     system: ""

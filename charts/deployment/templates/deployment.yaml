@@ -55,16 +55,30 @@ spec:
               protocol: TCP
           {{- if .Values.deployment.livenessProbe.enabled }}
           livenessProbe:
+            {{- if eq .Values.deployment.livenessProbe.type "http" }}
             httpGet:
               path: {{ .Values.deployment.livenessProbe.path }}
               port: {{ .Values.deployment.livenessProbe.port }}
+            {{- else if eq .Values.deployment.livenessProbe.type "grpc" }}
+            grpc:
+              port: {{ .Values.deployment.livenessProbe.port }}
+            {{- else }}
+            {{- fail "currently only grpc & http are supported livenessProbe types" }}
+            {{- end }}
           {{- end }}
 
           {{- if .Values.deployment.readinessProbe.enabled }}
           readinessProbe:
+            {{- if eq .Values.deployment.readinessProbe.type "http" }}
             httpGet:
               path: {{ .Values.deployment.readinessProbe.path }}
               port: {{ .Values.deployment.readinessProbe.port }}
+            {{- else if eq .Values.deployment.readinessProbe.type "grpc" }}
+            grpc:
+              port: {{ .Values.deployment.readinessProbe.port }}
+            {{- else }}
+            {{- fail "currently only grpc & http are supported readinessProbe types" }}
+            {{- end }}
           {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
