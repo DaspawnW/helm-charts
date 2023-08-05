@@ -94,6 +94,11 @@ spec:
             {{- end }}
           {{- end }}
 
+      {{- if .Values.deployment.initContainers }}
+      initContainers:
+        {{ toYaml .Values.deployment.initContainers | nindent 8 }}
+      {{ end }}
+
       {{- if .Values.deployment.volumes }}
       volumes:
         {{- range .Values.deployment.volumes }}

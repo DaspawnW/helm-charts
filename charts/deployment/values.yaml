@@ -28,6 +28,8 @@ deployment:
     limits:
       memory: 256Mi
 
+  initContainers: []
+
   volumes: []
 #    - name: qwe
 #      mountPath: "/opt/asd"
